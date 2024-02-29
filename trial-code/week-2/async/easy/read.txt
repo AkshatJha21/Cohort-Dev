@@ -1,0 +1,1 @@
+Written text replaces the existing text from the .txt file
