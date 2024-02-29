@@ -1,7 +1,4 @@
-let time = new Date();
-let hrs = time.getHours();
-let min = time.getMinutes();
-let sec = time.getSeconds();
+//12 HOUR FORMAT
 
 function currentTime() {
     let time = new Date();
@@ -34,9 +31,7 @@ function currentTime() {
     } 
 
     let clock = hrs + ":" + min + ":" + sec + " " + session;
-    setTimeout(function(){ 
-        currentTime() 
-    }, 1000);
+    setTimeout(currentTime, 1000);
     console.log(clock);
 }
 
