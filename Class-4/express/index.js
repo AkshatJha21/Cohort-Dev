@@ -7,6 +7,9 @@ var users = [
             { 
                 healthy: true
             },
+            {
+                healthy: false
+            }
         ]
     },
 ]
@@ -48,7 +51,31 @@ app.post("/", function(req, res) {
 
 // HEAL KIDNEY
 app.put("/", function(req, res) {
+    for (let i = 0; i < users[0].kidneys.length; i++) {
+        if (!users[0].kidneys[i].healthy){
+            users[0].kidneys[i].healthy = true;
+        }
+    }
+    res.send("Done");
+});
 
+//REMOVE UNHEALTHY KIDNEY
+app.delete("/", function(req, res) {
+    let newKidneys = [];
+    for (let i = 0; i < users[0].kidneys.length; i++) {
+        if (users[0].kidneys[i].healthy){
+            newKidneys.push({
+                healthy: true
+            });
+        }
+    };
+    if (newKidneys.length == 0) {
+        newKidneys.push({
+            healthy: true
+        });
+    };
+    users[0].kidneys = newKidneys;
+    res.send("Done");
 });
 
 app.listen(port, function(req, res) {
