@@ -61,22 +61,37 @@ app.put("/", function(req, res) {
 
 //REMOVE UNHEALTHY KIDNEY
 app.delete("/", function(req, res) {
-    let newKidneys = [];
-    for (let i = 0; i < users[0].kidneys.length; i++) {
-        if (users[0].kidneys[i].healthy){
+    if(isUnhealthy()) {
+        let newKidneys = [];
+        for (let i = 0; i < users[0].kidneys.length; i++) {
+            if (users[0].kidneys[i].healthy){
+                newKidneys.push({
+                    healthy: true
+                });
+            }
+        };
+        if (newKidneys.length == 0) {
             newKidneys.push({
                 healthy: true
             });
+        };
+        users[0].kidneys = newKidneys;
+        res.send("Done");
+    } else {
+        res.send("Already ok");
+    }
+
+});
+
+function isUnhealthy() {
+    let isUnhealthy = false;
+    for (let i = 0; i < users[0].kidneys.length; i++) {
+        if (!users[0].kidneys[i].healthy){
+            isUnhealthy = true;
         }
     };
-    if (newKidneys.length == 0) {
-        newKidneys.push({
-            healthy: true
-        });
-    };
-    users[0].kidneys = newKidneys;
-    res.send("Done");
-});
+    return isUnhealthy;
+}
 
 app.listen(port, function(req, res) {
     console.log("Listening on port ", port);
