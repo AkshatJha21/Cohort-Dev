@@ -35,6 +35,7 @@ app.get("/", function(req, res) {
     });
 });
 
+// ADD KIDNEY
 app.post("/", function(req, res) {
     const isHealthy = req.body.isHealthy;
     users[0].kidneys.push({
@@ -45,6 +46,11 @@ app.post("/", function(req, res) {
     })
 });
 
+// HEAL KIDNEY
+app.put("/", function(req, res) {
+
+});
+
 app.listen(port, function(req, res) {
     console.log("Listening on port ", port);
-})
+});
