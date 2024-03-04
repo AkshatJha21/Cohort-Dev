@@ -51,12 +51,16 @@ app.post("/", function(req, res) {
 
 // HEAL KIDNEY
 app.put("/", function(req, res) {
-    for (let i = 0; i < users[0].kidneys.length; i++) {
-        if (!users[0].kidneys[i].healthy){
-            users[0].kidneys[i].healthy = true;
+    if(isUnhealthy()){
+        for (let i = 0; i < users[0].kidneys.length; i++) {
+            if (!users[0].kidneys[i].healthy){
+                users[0].kidneys[i].healthy = true;
+            }
         }
+        res.send("Done");
+    } else {
+        res.send("Already healthy");
     }
-    res.send("Done");
 });
 
 //REMOVE UNHEALTHY KIDNEY
