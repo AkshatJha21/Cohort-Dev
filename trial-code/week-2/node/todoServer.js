@@ -23,10 +23,15 @@ function newTodo(title, description, completed) {
     todos.push({title, description, completed});
 };
 
-function updateTodo(id, key, value){
-    const todo = todos[id];
-    todo.key = value;
-};
+function updateTodo(id, title, desc, status) {
+    if (id >= 0 && id < todos.length) {
+        todos[id].title = title;
+        todos[id].description = desc;
+        todos[id].completed = status;
+    } else {
+        console.log('Invalid index');
+    }
+}
 
 app.get('/todos', function(req, res) {
     res.json(todos).status(200);
@@ -50,7 +55,12 @@ app.post('/todos', (req, res) => {
 
 app.put('/todos/:id', (req, res) => {
     const id = req.params.id;
-    updateTodo()
+    const body = req.body;
+    if (id < 0 || id >= todos.length) {
+        res.status(404).send('Todo not found (id is out of range)');
+    }
+    updateTodo(id, body.title, body.description, body.completed);
+    res.status(200).send('Todo found and updated');
 });
 
 app.listen(port, function(req, res) {
