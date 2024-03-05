@@ -76,6 +76,22 @@ app.delete('/todos/:id', function(req, res) {
     res.status(200).send("Deleted successfully");
 });
 
+app.get('*', function(req, res) {
+    res.status(404).send('404 - Not Found')
+});
+
+app.post('*', function(req, res) {
+    res.status(404).send('404 - Not Found')
+});
+
+app.put('*', function(req, res) {
+    res.status(404).send('404 - Not Found')
+});
+
+app.delete('*', function(req, res) {
+    res.status(404).send('404 - Not Found')
+});
+
 app.listen(port, function(req, res) {
     console.log('Listening on port ' + port);
 });
