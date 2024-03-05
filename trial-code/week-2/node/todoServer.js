@@ -33,6 +33,10 @@ function updateTodo(id, title, desc, status) {
     }
 }
 
+function deleteTodo(id) {
+    todos.pop(id);
+}
+
 app.get('/todos', function(req, res) {
     res.json(todos).status(200);
 });
@@ -61,6 +65,15 @@ app.put('/todos/:id', (req, res) => {
     }
     updateTodo(id, body.title, body.description, body.completed);
     res.status(200).send('Todo found and updated');
+});
+
+app.delete('/todos/:id', function(req, res) {
+    const id = req.params.id;
+    if (id < 0 || id >= todos.length) {
+        res.status(404).send('Todo not found (id is out of range)');
+    }
+    deleteTodo(id);
+    res.status(200).send("Deleted successfully");
 });
 
 app.listen(port, function(req, res) {
