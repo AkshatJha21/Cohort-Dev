@@ -89,6 +89,46 @@ app.put('/todos/:id', (req, res) => {
     });
 });
 
+app.delete('/todos/:id', (req, res) => {
+    const id = req.params.id;
+    fs.readFile('todos.json', 'utf-8', (err, data) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        let todoList = JSON.parse(data);
+        if (id < 0 || id >= todoList.length) {
+            res.status(404).send('Todo not found (id is out of range)');
+        }
+        todoList.pop(id);
+        const updatedTodo = JSON.stringify(todoList);
+
+        fs.writeFile('todos.json', updatedTodo, (err) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            res.status(200).send('Todo deleted');
+        });
+    });
+});
+
+app.get('*', function(req, res) {
+    res.status(404).send('404 - Not Found')
+});
+
+app.post('*', function(req, res) {
+    res.status(404).send('404 - Not Found')
+});
+
+app.put('*', function(req, res) {
+    res.status(404).send('404 - Not Found')
+});
+
+app.delete('*', function(req, res) {
+    res.status(404).send('404 - Not Found')
+});
+
 app.listen(port, function(req, res) {
     console.log('Listening on port ' + port);
 });
