@@ -34,6 +34,30 @@ app.get('/todos/:id', (req, res) => {
     })
 });
 
+app.post('/todos', (req, res) => {
+    const body = req.body;
+
+    fs.readFile('todos.json', 'utf-8', (err, data) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        let todoList = JSON.parse(data);
+        todoList.push(body);
+
+        const todo = JSON.stringify(todoList);
+
+        fs.writeFile('todos.json', todo, (err) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            res.status(200).send('Todo added');
+        })
+    });
+
+});
+
 app.listen(port, function(req, res) {
     console.log('Listening on port ' + port);
 });

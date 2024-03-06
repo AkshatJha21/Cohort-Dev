@@ -1,12 +1,1 @@
-[
-    {
-        "title": "Do task 1",
-        "description": "Complete task 1 before 6pm",
-        "completed": true
-    },
-    {
-        "title": "Do task 2",
-        "description": "Do not complete immediately",
-        "completed": false
-    }
-]
+[{"title":"Do task 1","description":"Complete task 1 before 6pm","completed":true},{"title":"Do task 2","description":"Do not complete immediately","completed":false},{"title":"Task 3","description":"Finish it off","completed":false}]
