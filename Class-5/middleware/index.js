@@ -6,9 +6,9 @@ const port = 3000;
 app.get("/health-checkup", (req, res) => {
     const username = req.headers.username;
     const password = req.headers.password;
-    const kidneyId = req.params.kidneyId;
+    const kidneyId = req.query.kidneyId;
 
-    if (username !== 'akshat' || password !== 'passkey1') {
+    if (username != 'akshat' || password != 'passkey1') {
         res.status(400).json({
             msg: "Incorrect headers"
         });
