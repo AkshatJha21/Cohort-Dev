@@ -23,5 +23,10 @@ function signJwt(username, password) {
 
 function verifyJwt(token) {
     const verified = jwt.verify(token, jwtKey);
+    
+    return verified;
 }
 
+function decodeJwt(token) {
+    
+}
