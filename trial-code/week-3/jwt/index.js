@@ -24,8 +24,12 @@ function signJwt(username, password) {
 }
 
 function verifyJwt(token) {
-    const verified = jwt.verify(token, jwtKey);
-    
+    let verified = true;
+    try {
+        jwt.verify(token, jwtKey);
+    } catch (error) {
+        verified = false;
+    }
     return verified;
 }
 
