@@ -30,5 +30,11 @@ function verifyJwt(token) {
 }
 
 function decodeJwt(token) {
-    
+    const decoded = jwt.decode(token);
+
+    if (decoded) {
+        return true;
+    } else {
+        return false;
+    }
 }
