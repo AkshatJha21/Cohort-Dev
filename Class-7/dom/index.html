@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let timeout;
+        
+        function sum(a, b) {
+            return a + b;
+        }
+        
+        function populateDiv() {
+            const divContent = document.getElementById('finalSum');
+            const first = document.getElementById('num1').value;
+            const second = document.getElementById('num2').value;
+            
+            fetch("https://sum-server.100xdevs.com/sum?a=" + first + "&b=" + second).then(function(res) {
+                console.log(res);
+                res.text().then(function (ans) {
+                    divContent.innerHTML = "Sum is " + ans;
+                })
+            });
+            
+        }
+        function debounce() {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                populateDiv();
+            }, 1000);
+        }
+        </script>
+
+    <h2>Calculator</h2>
+    <input oninput="debounce()" id="num1" class="input" type="number" placeholder="First number">
+    <br>
+    <br>
+    <input oninput="debounce()" id="num2" class="input" type="number" placeholder="Second number">
+    <br>
+    <br>
+    <!-- <button onclick="populateDiv()">Calculate Sum</button> -->
+    <div id="finalSum">
+
+    </div>
+</body>
+</html>
