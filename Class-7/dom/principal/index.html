@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+</head>
+<body>
+    <script>
+        async function populateDiv() {
+            const divContent = document.getElementById("calculated");
+            const p = document.getElementById('principal').value;
+            const r = document.getElementById('rate').value;
+            const t = document.getElementById('time').value;
+
+            const res = await fetch('https://sum-server.100xdevs.com/interest?principal=' + p + '&rate=' + r + '&time=' + t);
+            const ans = await res.json();
+
+            divContent.innerHTML = "Total = " + ans.total + "<br/>Interest = " + ans.interest;
+        }
+    </script>
+
+    <h2>Interest Calculator</h2>
+    <input  id="principal" class="input" type="number" placeholder="Principal">
+    <br>
+    <br>
+    <input  id="rate" class="input" type="number" placeholder="Rate">
+    <br>
+    <br>
+    <input  id="time" class="input" type="number" placeholder="Time">
+    <br>
+    <br>
+    <button onclick="populateDiv()">Calculate Ans</button>
+    <div id="calculated"></div>
+</body>
+</html>
