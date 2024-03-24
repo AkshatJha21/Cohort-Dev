@@ -10,14 +10,20 @@
         function addTodo() {
             const title = document.getElementById("title").value;
             const desc = document.getElementById("desc").value;
-            console.log(title);
-            console.log(desc);
-            const ogDiv = document.getElementById("container").innerHTML;
-            document.getElementById("container").innerHTML = ogDiv + `
-                <p>${title}</p>
-                <p>${desc}</p>
-                <button>Mark as done</button>
-            `;
+            
+            // document.createElement:-
+
+            const outerDiv = document.createElement("div");
+            outerDiv.innerHTML = title;
+            document.getElementById("container").appendChild(outerDiv);
+
+            // UGLY APPROACH :-
+            // const ogDiv = document.getElementById("container").innerHTML;
+            // document.getElementById("container").innerHTML = ogDiv + `
+            //     <p>${title}</p>
+            //     <p>${desc}</p>
+            //     <button>Mark as done</button>
+            // `;
         }
     </script>
 
