@@ -7,23 +7,40 @@
 </head>
 <body>
     <script>
+        let globalId = 1;
+
+        function markAsDone(id) {
+            const parent = document.getElementById(id);
+            parent.child[2].innerHTML = "Done";
+        }
+
+        function createChild(title, description, id) {
+            const child = document.createElement("div");
+
+            const firstChild = document.createElement("div");
+            firstChild.innerHTML = title;
+
+            const secondChild = document.createElement("div");
+            secondChild.innerHTML = description;
+
+            const thirdChild = document.createElement("button");
+            thirdChild.innerHTML = "Mark as done";
+            thirdChild.setAttribute("onclick", `markAsDone(${id})`);
+
+            child.appendChild(firstChild);
+            child.appendChild(secondChild);
+            child.appendChild(thirdChild);
+            child.setAttribute("id", id);
+
+            return child;
+        }
+
         function addTodo() {
             const title = document.getElementById("title").value;
             const desc = document.getElementById("desc").value;
-            
-            // document.createElement:-
+            const parent = document.getElementById("container");
 
-            const outerDiv = document.createElement("div");
-            outerDiv.innerHTML = title;
-            document.getElementById("container").appendChild(outerDiv);
-
-            // UGLY APPROACH :-
-            // const ogDiv = document.getElementById("container").innerHTML;
-            // document.getElementById("container").innerHTML = ogDiv + `
-            //     <p>${title}</p>
-            //     <p>${desc}</p>
-            //     <button>Mark as done</button>
-            // `;
+            parent.appendChild(createChild(title, desc, globalId++));
         }
     </script>
 
