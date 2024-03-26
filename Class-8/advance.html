@@ -56,13 +56,11 @@
             }
         }
 
-        updateDomState([
-            {
-                title: "Go to gym",
-                description: "Go to gym from 5 to 7 pm",
-                id: 1
-            }
-        ])
+        window.setInterval(async function() {
+            const res = await fetch('https://sum-server.100xdevs.com/todos');
+            const json = await res.json();
+            updateDomState(json.todos);
+        }, 5000)
     </script>
 </body>
 </html>
