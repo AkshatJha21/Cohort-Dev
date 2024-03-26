@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Title" id="title">
+    <br>
+    <br>
+    <input type="text" placeholder="Description" id="desc">
+    <br>
+    <br>
+    <!-- <button onclick="addTodo()">Add Todo</button> -->
+    <br>
+    <br>
+    <div id="container">
+        
+    </div>
+    
+    <script>
+
+        function markAsDone(id) {
+            const parent = document.getElementById(id);
+            parent.children[2].innerHTML = "Done";
+        }
+
+        function createChild(title, description, id) {
+            const child = document.createElement("div");
+
+            const firstChild = document.createElement("div");
+            firstChild.innerHTML = title;
+
+            const secondChild = document.createElement("div");
+            secondChild.innerHTML = description;
+
+            const thirdChild = document.createElement("button");
+            thirdChild.innerHTML = "Mark as done";
+            thirdChild.setAttribute("onclick", `markAsDone(${id})`);
+
+            child.appendChild(firstChild);
+            child.appendChild(secondChild);
+            child.appendChild(thirdChild);
+            child.setAttribute("id", id);
+
+            return child;
+        }
+
+        function updateDomState(state) {
+            const parent = document.getElementById("container");
+            parent.innerHTML = "";
+            for (let i = 0; i < state.length; i++) {
+                const child = createChild(state[i].title, state[i].description, state[i].id);
+                parent.appendChild(child);
+            }
+        }
+
+        updateDomState([
+            {
+                title: "Go to gym",
+                description: "Go to gym from 5 to 7 pm",
+                id: 1
+            }
+        ])
+    </script>
+</body>
+</html>
