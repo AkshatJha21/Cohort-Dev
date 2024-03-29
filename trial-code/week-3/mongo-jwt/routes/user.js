@@ -33,7 +33,8 @@ router.post('/signin', async (req, res) => {
 
     if (user) {
         const token = jwt.sign({
-            username
+            username,
+            password
         }, JWT_SECRET);
     
         res.json({
@@ -59,6 +60,10 @@ router.post('/courses/:courseId', userMiddleware, (req, res) => {
     // Implement course purchase logic
     const username = req.username;
     console.log(username);
+
+    res.json({
+        message: 'Route works'
+    });
 });
 
 router.get('/purchasedCourses', userMiddleware, (req, res) => {

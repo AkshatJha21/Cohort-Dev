@@ -11,7 +11,7 @@ function adminMiddleware(req, res, next) {
     try {
         const decodedValue = jwt.verify(jwtToken, JWT_SECRET);
         
-        if (decodedValue) {
+        if (decodedValue.username) {
             next();
         } else {
             res.status(403).json({
