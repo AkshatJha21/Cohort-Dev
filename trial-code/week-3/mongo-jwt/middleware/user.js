@@ -11,8 +11,9 @@ function userMiddleware(req, res, next) {
 
     const decodedToken = jwt.verify(jwtToken, JWT_SECRET);
 
-    if (decodedToken.username) {
+    if (decodedToken.username && decodedToken.password) {
         req.username = decodedToken.username;
+        req.password = decodedToken.password;
         next();
     } else {
         res.status(403).json({

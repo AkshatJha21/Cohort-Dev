@@ -56,18 +56,47 @@ router.get('/courses', async (req, res) => {
     });
 });
 
-router.post('/courses/:courseId', userMiddleware, (req, res) => {
+router.post('/courses/:courseId', userMiddleware, async (req, res) => {
     // Implement course purchase logic
     const username = req.username;
-    console.log(username);
+    const password = req.password;
+    const courseId = req.params.courseId;
+    // console.log(username);
+    
+    try {
+        await User.updateOne({
+            username,
+            password
+        }, {
+            "$push": {
+                purchasedCourses: courseId
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
 
     res.json({
-        message: 'Route works'
+        message: "Course purchased succesfully"
     });
 });
 
-router.get('/purchasedCourses', userMiddleware, (req, res) => {
+router.get('/purchasedCourses', userMiddleware, async (req, res) => {
     // Implement fetching purchased courses logic
+    const user = await User.findOne({
+        username: req.username,
+        password: req.password,
+    })
+
+    const courses = await Course.find({
+        _id: {
+            "$in": user.purchasedCourses
+        }
+    })
+
+    res.json({
+        courses: courses
+    });
 });
 
 module.exports = router
