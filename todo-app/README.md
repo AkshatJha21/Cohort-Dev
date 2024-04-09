@@ -12,3 +12,5 @@ Development steps:
     (ii) install npm packages
     (iii) setup express routes
     (iv) Zod validation
+    (v) Express routes used zod
+    (vi) MongoDB
