@@ -14,3 +14,8 @@ Development steps:
     (iv) Zod validation
     (v) Express routes used zod
     (vi) MongoDB
+    (vii) Routes completed
+    (viii) Test routes using Postman or Thunderclient
+3. Frontend
+    (i) React install + cleanup default files
+    (ii) 
