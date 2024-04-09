@@ -26,7 +26,6 @@ app.post('/todo', async (req, res) => {
         return;
     }
 
-    // push to mongo
     await todo.create({
         title: createPayload.title,
         description: createPayload.description,
