@@ -38,12 +38,6 @@
     }
 
     function updateState(newTodos) {
-      if (todoState.length > oldTodoState.length) {
-        // todo is added
-        addTodoToDom()
-      } else if (todoState.length < oldTodoState.length) {
-        // todo is deleted
-      }
       // calculate the diff b/w newTodos and oldTodos.
       // More specifically, find out what todos are - 
       // 1. added
