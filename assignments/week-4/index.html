@@ -8,7 +8,24 @@
     let oldTodoState = [];
 
     function addTodoToDom() {
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      const todoDiv = document.getElementById("todos");
+
+      const child = document.createElement("div");
+      const firstElement = document.createElement("h2");
+      firstElement.innerHTML = title;
+      const secondElement = document.createElement("h4");
+      secondElement.innerHTML = description;
+      const thirdElement = document.createElement("button");
+      thirdElement.innerHTML = "Mark as done";
+      thirdElement.setAttribute("onclick", `removeTodoFromDom(${globalId})`)
+      child.appendChild(firstElement);
+      child.appendChild(secondElement);
+      child.appendChild(thirdElement);
+      child.setAttribute("id", globalId);
       
+      todoDiv.appendChild(child);
     }
 
     function removeTodoFromDom(todo) {
@@ -20,6 +37,12 @@
     }
 
     function updateState(newTodos) {
+      if (todoState.length > oldTodoState.length) {
+        // todo is added
+        addTodoToDom()
+      } else if (todoState.length < oldTodoState.length) {
+        // todo is deleted
+      }
       // calculate the diff b/w newTodos and oldTodos.
       // More specifically, find out what todos are - 
       // 1. added
@@ -50,7 +73,7 @@
 <body>
   <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
   <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
-  <button onclick="addTodo()">Add todo</button>
+  <button onclick="addTodoToDom()">Add todo</button>
   <br /> <br />
 
   <div id="todos">
