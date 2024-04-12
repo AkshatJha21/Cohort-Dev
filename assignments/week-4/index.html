@@ -23,13 +23,14 @@
       child.appendChild(firstElement);
       child.appendChild(secondElement);
       child.appendChild(thirdElement);
-      child.setAttribute("id", globalId);
-      
+      child.setAttribute("id", globalId++);
+
       todoDiv.appendChild(child);
     }
 
     function removeTodoFromDom(todo) {
-      
+      const remove = document.getElementById(todo);
+      remove.remove();
     }
 
     function updateTodoInDom(oldTodo, newTodo) {
