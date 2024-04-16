@@ -3,27 +3,32 @@ import axios from "axios"
 import './App.css'
 
 function App() {
-  const [todos, setTodos] = useState([]);
-
-  useEffect(() => {
-    axios.get("https://sum-server.100xdevs.com/todos").then(function (res) {
-      setTodos(res.data.todos);
-    });
-  }, [])
-  
-
+  const [find, setFind] = useState(1);
   return (
-    <>
-      {todos.map((todo) => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
-    </>
+    <div>
+      <button onClick={() => setFind(1)}>1</button>
+      <button onClick={() => setFind(2)}>2</button>
+      <button onClick={() => setFind(3)}>3</button>
+      <Todo id={find} />
+    </div>
   )
 }
 
-function Todo({ title, description }) {
+function Todo({ id }) {
+  const [todo, setTodo] = useState({});
+
+  useEffect(() => {
+    axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`).then(function (res) {
+      setTodo(res.data.todo);
+    });
+  }, [id]);
+  
+
   return (
     <div>
-      <h1>{title}</h1>
-      {description}
+      <p>Id: {id}</p>
+      <h1>{todo.title}</h1>
+      {todo.description}
     </div>
   )
 }
