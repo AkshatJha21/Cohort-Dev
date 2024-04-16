@@ -1,31 +1,32 @@
-import { useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0);
-  const [num, setNum] = useState(1);
 
   const upCounter = () => {
     setCount(count+1);
   };
 
-  let sum = useMemo(() => {
-    let total = 0;
-    for (let i = 1; i <= num; i++) {
-      total += i;
-    }
-    return total;
-  }, [num]);
+  const a = useCallback(() => {
+    console.log("Hello");
+  }, []);
 
   return (
     <div>
-      <input type="number" placeholder='number' onChange={(e) => {
-        setNum(e.target.value);
-      }}/>
-      <p>Sum is: {sum}</p>
       <button onClick={() => upCounter()}>Counter ({count})</button>
+      <Demo a={a} />
     </div>
   )
 }
+
+const Demo = memo(({a}) => {
+  console.log("Rerender");
+  return (
+    <div>
+      Hi there
+    </div>
+  )
+})
 
 export default App
