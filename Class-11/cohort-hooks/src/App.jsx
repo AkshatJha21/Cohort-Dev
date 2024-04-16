@@ -1,34 +1,29 @@
-import { useEffect, useState } from 'react'
-import axios from "axios"
+import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [find, setFind] = useState(1);
-  return (
-    <div>
-      <button onClick={() => setFind(1)}>1</button>
-      <button onClick={() => setFind(2)}>2</button>
-      <button onClick={() => setFind(3)}>3</button>
-      <Todo id={find} />
-    </div>
-  )
-}
+  const [count, setCount] = useState(0);
+  const [num, setNum] = useState(1);
 
-function Todo({ id }) {
-  const [todo, setTodo] = useState({});
+  const upCounter = () => {
+    setCount(count+1);
+  };
 
-  useEffect(() => {
-    axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`).then(function (res) {
-      setTodo(res.data.todo);
-    });
-  }, [id]);
-  
+  let sum = useMemo(() => {
+    let total = 0;
+    for (let i = 1; i <= num; i++) {
+      total += i;
+    }
+    return total;
+  }, [num]);
 
   return (
     <div>
-      <p>Id: {id}</p>
-      <h1>{todo.title}</h1>
-      {todo.description}
+      <input type="number" placeholder='number' onChange={(e) => {
+        setNum(e.target.value);
+      }}/>
+      <p>Sum is: {sum}</p>
+      <button onClick={() => upCounter()}>Counter ({count})</button>
     </div>
   )
 }
