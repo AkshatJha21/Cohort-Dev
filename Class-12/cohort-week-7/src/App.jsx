@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { lazy } from 'react';
 import './App.css'
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
@@ -12,8 +12,8 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path='/dashboard' element={<Dashboard />}/>
-        <Route path='/' element={<Landing />}/>
+        <Route path='/dashboard' element={<Suspense fallback={<Loader />}><Dashboard /></Suspense>}/>
+        <Route path='/' element={<Suspense fallback={<Loader />}><Landing /></Suspense>}/>
       </Routes>
     </BrowserRouter>
     </>
@@ -30,6 +30,14 @@ function Navbar() {
       <button onClick={() => {
         navigate('/');
       }}>Home</button>
+    </div>
+  )
+}
+
+function Loader() {
+  return (
+    <div>
+      Loading...
     </div>
   )
 }
