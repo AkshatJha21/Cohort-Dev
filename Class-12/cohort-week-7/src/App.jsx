@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { lazy } from 'react';
 import './App.css'
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
@@ -6,38 +6,32 @@ const Dashboard = lazy(() => import('./components/Dashboard'));
 const Landing = lazy(() => import('./components/Landing'));
 
 function App() {
-  
-  return (
-    <>
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path='/dashboard' element={<Suspense fallback={<Loader />}><Dashboard /></Suspense>}/>
-        <Route path='/' element={<Suspense fallback={<Loader />}><Landing /></Suspense>}/>
-      </Routes>
-    </BrowserRouter>
-    </>
-  )
-}
-
-function Navbar() {
-  const navigate = useNavigate();
+  const [count, setCount] = useState(0);
   return (
     <div>
-      <button onClick={() => {
-        navigate('/dashboard');
-      }}>Dashboard</button>
-      <button onClick={() => {
-        navigate('/');
-      }}>Home</button>
+      <Count count={count}/>
+      <Buttons count={count} setCount={setCount}/>
     </div>
   )
 }
 
-function Loader() {
+function Count({ count }) {
   return (
     <div>
-      Loading...
+      {count}
+    </div>
+  )
+}
+
+function Buttons({ count, setCount}) {
+  return (
+    <div>
+      <button onClick={() => {
+        setCount(count + 1);
+      }}>+</button>
+      <button onClick={() => {
+        setCount(count - 1)
+      }}>-</button>
     </div>
   )
 }
