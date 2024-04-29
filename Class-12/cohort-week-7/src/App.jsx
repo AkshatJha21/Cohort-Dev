@@ -1,21 +1,28 @@
-import React, { Suspense, useState } from 'react';
-import { lazy } from 'react';
+import React, { Suspense, useContext, useState } from 'react';
 import './App.css'
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-const Dashboard = lazy(() => import('./components/Dashboard'));
-const Landing = lazy(() => import('./components/Landing'));
+import { CountContext } from './context';
 
 function App() {
   const [count, setCount] = useState(0);
   return (
     <div>
-      <Count count={count}/>
-      <Buttons count={count} setCount={setCount}/>
+      <CountContext.Provider value={count}>
+        <Count setCount={setCount}/>
+      </CountContext.Provider>
     </div>
   )
 }
 
-function Count({ count }) {
+function Count({ setCount }) {
+  return (
+    <div>
+      <CountRenderer />
+      <Buttons setCount={setCount}/>
+    </div>
+  )
+}
+function CountRenderer() {
+  const count = useContext(CountContext);
   return (
     <div>
       {count}
@@ -23,7 +30,8 @@ function Count({ count }) {
   )
 }
 
-function Buttons({ count, setCount}) {
+function Buttons({ setCount }) {
+  const count = useContext(CountContext);
   return (
     <div>
       <button onClick={() => {
