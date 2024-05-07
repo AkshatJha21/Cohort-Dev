@@ -1,6 +1,6 @@
 function VideoCard(props: any) {
     return (
-        <div className="p-3">
+        <div className="p-2 cursor-pointer m-1">
             <img className="rounded-xl" src={props.thumbnail} alt="Thumbnail" />
             <div className="grid grid-cols-12 pt-2">
                 <div className="col-span-1">
