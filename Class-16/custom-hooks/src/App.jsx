@@ -16,20 +16,22 @@ function App() {
   )
 }
 
-function MyComponent() {
-  useEffect(() => {
-    console.log("Component Mounted")
+class MyComponent extends React.Component {
+  componentDidMount() {
+    console.log("Component Mounted");
+  }
 
-    return () => {
-      console.log("Component Unmounted");
-    };
-  }, []);
+  componentWillUnmount() {
+    console.log("Component Unmounted");
+  }
 
-  return (
-    <div>
-      Component is here
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        Component is here
+      </div>
+    )
+  }
 }
 
 export default App
