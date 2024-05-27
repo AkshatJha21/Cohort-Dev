@@ -1,37 +1,55 @@
-import React, { useEffect, useState } from 'react'
-import './App.css'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-function App() {
-  const [render, setRender] = useState(true);
+function useTodos() {
+  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setInterval(() => {
-      setRender(r => !r);
-    }, 10000);
-  }, []);
+    // const val = setInterval(() => {
+    //   axios.get("https://sum-server.100xdevs.com/todos")
+    //     .then(res => {
+    //       setTodos(res.data.todos);
+    //       setLoading(false);
+    //     })
+    // }, n * 1000);
+    
+      axios.get("https://sum-server.100xdevs.com/todos")
+        .then(res => {
+          setTodos(res.data.todos);
+          setLoading(false);
+        });
+      
+      // return () => {
+      //   clearInterval(val);
+      // }
+  }, [/* n */]);
+
+  return { todos, loading };
+}
+
+function App() {
+  const {todos, loading} = useTodos();
+
+  if(loading) {
+    return (
+      <div>Loading...</div>
+    )
+  }
+
   return (
     <>
-      {render ? <MyComponent /> : "Component left"}
+      {todos.map(todo => <Track todo={todo} />)}
     </>
   )
 }
 
-class MyComponent extends React.Component {
-  componentDidMount() {
-    console.log("Component Mounted");
-  }
-
-  componentWillUnmount() {
-    console.log("Component Unmounted");
-  }
-
-  render() {
-    return (
-      <div>
-        Component is here
-      </div>
-    )
-  }
+function Track({ todo }) {
+  return <div>
+    {todo.title}
+    <br />
+    {todo.description}
+  </div>
 }
 
 export default App
