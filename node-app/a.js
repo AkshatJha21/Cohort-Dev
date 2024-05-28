@@ -1,7 +1,7 @@
 "use strict";
 // let x: number = 1;
 // console.log(x);
-function helloWorld(firstName) {
-    console.log(`Hello, ${firstName}`);
+function addNumbers(a, b) {
+    return a + b;
 }
-helloWorld("23");
+console.log(addNumbers(4, 5));

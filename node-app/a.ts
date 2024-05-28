@@ -1,8 +1,7 @@
 // let x: number = 1;
 // console.log(x);
 
-function helloWorld(firstName: string) {
-    console.log(`Hello, ${firstName}`);
+function addNumbers(a: number, b: number): number {
+    return a + b;
 }
-
-helloWorld("23");
+console.log(addNumbers(4, 5));
