@@ -1,7 +1,15 @@
 // let x: number = 1;
 // console.log(x);
 
-function addNumbers(a: number, b: number): number {
-    return a + b;
+function isLegal(age: number): boolean {
+    if (age >= 18) {
+        return true;
+    } else {
+        return false;
+    };
+};
+
+let x: boolean = isLegal(18);
+if (x) {
+    console.log("Adult");
 }
-console.log(addNumbers(4, 5));

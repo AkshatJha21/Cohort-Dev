@@ -1,7 +1,17 @@
 "use strict";
 // let x: number = 1;
 // console.log(x);
-function addNumbers(a, b) {
-    return a + b;
+function isLegal(age) {
+    if (age >= 18) {
+        return true;
+    }
+    else {
+        return false;
+    }
+    ;
 }
-console.log(addNumbers(4, 5));
+;
+let x = isLegal(18);
+if (x) {
+    console.log("Adult");
+}
