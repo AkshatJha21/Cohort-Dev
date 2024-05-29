@@ -128,11 +128,19 @@
 
 // doSomething("downs"); THROWS ERROR
 
-type myArr = number | string;
-
-function firstElem(arr: myArr[]): myArr {
+function firstElem<arrType>(arr: arrType[]) {
     return arr[0];
 }
 
-const value = firstElem([1, 2, 3, "akshat", "jha"]);
-console.log(value);
+const value = firstElem(["akshat", "jha"]);
+console.log(value.toUpperCase());
+
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let op1 = identity<string>("water");
+let op2 = identity<number>(1);
+
+console.log(op1.toUpperCase());
+console.log(op2);
