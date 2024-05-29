@@ -108,22 +108,31 @@
 
 // console.log(maxValue([1, 2, 3]));
 
-type KeyInput = "up" | "down" | "left" | "right";
+// type KeyInput = "up" | "down" | "left" | "right";
 
-enum Direction {
-    Up = "up",
-    Down = "down",
-    Left = "left",
-    Right = "right"
-}
+// enum Direction {
+//     Up = "up",
+//     Down = "down",
+//     Left = "left",
+//     Right = "right"
+// }
 
-function doSomething(keyPressed: Direction) {
+// function doSomething(keyPressed: Direction) {
 
-}
+// }
 
-doSomething(Direction.Up);
-doSomething(Direction.Down);
-console.log(Direction.Up);
-console.log(Direction.Down);
+// doSomething(Direction.Up);
+// doSomething(Direction.Down);
+// console.log(Direction.Up);
+// console.log(Direction.Down);
 
 // doSomething("downs"); THROWS ERROR
+
+type myArr = number | string;
+
+function firstElem(arr: myArr[]): myArr {
+    return arr[0];
+}
+
+const value = firstElem([1, 2, 3, "akshat", "jha"]);
+console.log(value);
