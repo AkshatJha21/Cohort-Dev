@@ -128,19 +128,22 @@
 
 // doSomething("downs"); THROWS ERROR
 
-function firstElem<arrType>(arr: arrType[]) {
-    return arr[0];
-}
+// function firstElem<arrType>(arr: arrType[]) {
+//     return arr[0];
+// }
 
-const value = firstElem(["akshat", "jha"]);
-console.log(value.toUpperCase());
+// const value = firstElem(["akshat", "jha"]);
+// console.log(value.toUpperCase());
 
-function identity<T>(arg: T): T {
-    return arg;
-}
+// function identity<T>(arg: T): T {
+//     return arg;
+// }
 
-let op1 = identity<string>("water");
-let op2 = identity<number>(1);
+// let op1 = identity<string>("water");
+// let op2 = identity<number>(1);
 
-console.log(op1.toUpperCase());
-console.log(op2);
+// console.log(op1.toUpperCase());
+// console.log(op2);
+
+import hj from "./b"
+console.log(hj);
