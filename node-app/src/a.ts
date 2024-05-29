@@ -96,14 +96,34 @@
 //     department: "HR"
 // }
 
-function maxValue(arr: number[]) {
-    let max = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-        }
-    }
-    return max;
+// function maxValue(arr: number[]) {
+//     let max = 0;
+//     for (let i = 0; i < arr.length; i++) {
+//         if (arr[i] > max) {
+//             max = arr[i];
+//         }
+//     }
+//     return max;
+// }
+
+// console.log(maxValue([1, 2, 3]));
+
+type KeyInput = "up" | "down" | "left" | "right";
+
+enum Direction {
+    Up = "up",
+    Down = "down",
+    Left = "left",
+    Right = "right"
 }
 
-console.log(maxValue([1, 2, 3]));
+function doSomething(keyPressed: Direction) {
+
+}
+
+doSomething(Direction.Up);
+doSomething(Direction.Down);
+console.log(Direction.Up);
+console.log(Direction.Down);
+
+// doSomething("downs"); THROWS ERROR
