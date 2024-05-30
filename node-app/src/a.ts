@@ -146,4 +146,4 @@
 // console.log(op2);
 
 import hj from "./b"
-console.log(hj);
+console.log(hj, "A");
