@@ -16,6 +16,18 @@ async function createUsersTable() {
         );
     `)
     console.log(result);
+    await client.end();
 }
 
-createUsersTable();
+async function insertUser() {
+    await client.connect();
+    const result = await client.query(`
+        INSERT INTO users (username, email ,password)
+        VALUES ('johnWick', 'johnWick@email.com', 'john1234');
+    `);
+    console.log(result);
+    await client.end();
+}
+
+// createUsersTable();
+insertUser();
