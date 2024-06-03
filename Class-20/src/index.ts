@@ -6,7 +6,13 @@ interface User {
     password: string;
 }
 
-type UpdateProps = Pick<User, 'name' | 'email' | 'age'>;
+type UserProfile = Pick<User, 'name' | 'email' | 'age'>;
+
+type UserProfileOptional = Partial<UserProfile>
+
+const displayUserProfile = (user: UserProfile) => {
+    console.log(`Name: ${user.name}, Email: ${user.email}`);
+  };
 
 // function sumOfAge(user1: User, user2: User): number {
 //     return user1.age + user2.age;
