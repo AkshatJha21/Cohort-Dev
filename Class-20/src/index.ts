@@ -1,7 +1,7 @@
 interface User {
-    id: string;
+    readonly id: string;
     name: string;
-    age: number;
+    readonly age: number;
     email: string;
     password: string;
 }
@@ -12,7 +12,18 @@ type UserProfileOptional = Partial<UserProfile>
 
 const displayUserProfile = (user: UserProfile) => {
     console.log(`Name: ${user.name}, Email: ${user.email}`);
-  };
+};
+
+const user1: Readonly<User> = {
+    id: 'asdfass',
+    name: 'Akshat',
+    age: 23,
+    email: 'a@email.com',
+    password: 'ungabunga'
+}
+
+// CAN'T BE ASSIGNED TO A READONLY VALUE
+// user1.id = 'asdf'; 
 
 // function sumOfAge(user1: User, user2: User): number {
 //     return user1.age + user2.age;
