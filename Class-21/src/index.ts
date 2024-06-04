@@ -30,4 +30,4 @@ async function insertUserTable(username: string, email: string, password: string
 }
 
 // createUserTable();
-insertUserTable('user1', 'userone@email.com', 'user1pass');
+insertUserTable('user2', 'usertwo@email.com', 'user2pass');
