@@ -19,4 +19,15 @@ async function createUserTable() {
     await client.end();
 }
 
-createUserTable();
+async function insertUserTable(username: string, email: string, password: string) {
+    await client.connect();
+    const result = await client.query(`
+        INSERT INTO users (username, email, password)
+        VALUES ($1, $2, $3);
+    `, [username, email, password]);
+    console.log(result);
+    await client.end();
+}
+
+// createUserTable();
+insertUserTable('user1', 'userone@email.com', 'user1pass');
