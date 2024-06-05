@@ -60,8 +60,7 @@ export const updateUser = async (
 }
 
 export const todoComplete = async (
-    id: number,
-    done: boolean,
+    id: number
 ) => {
     const res = await client.todo.update({
         where: {
