@@ -19,3 +19,13 @@ const insertUser = async (username: string, password: string, email: string, fir
 
 // insertUser('john', 'johnpass', 'johndoe@email.com', 'John', 'Doe');
 
+const getTodos = async (id: number) => {
+    const res = await client.todo.findMany({
+        where: {
+            userId: id
+        }
+    });
+    console.log(res);
+}
+
+getTodos(2);
