@@ -1,31 +1,65 @@
-import { PrismaClient } from "@prisma/client";
+import express from "express";
+import { allTodos, allUsers } from "./db";
 
-const client = new PrismaClient();
+const app = express();
+const port = 3000;
 
-client.user.findMany
+app.get('/users', async (req, res) => {
+    try {
+        const users = await allUsers();
+        res.status(200).json({
+            list: users
+        });
+    } catch (error) {
+        res.status(411).json({
+            msg: "Error: " + error
+        });
+    }
+});
 
-const insertUser = async (username: string, password: string, email: string, firstName: string, lastName: string) => {
-    const res = await client.user.create({
-        data: {
-            username,
-            email,
-            password,
-            firstName,
-            lastName
-        }
-    });
-    console.log(res);
-}
+app.get('/todos', async (req, res) => {
+    try {
+        const todos = await allTodos();
+        res.status(200).json({
+            list: todos
+        });
+    } catch (error) {
+        res.status(411).json({
+            msg: "Error: " + error
+        });
+    }
+});
 
-// insertUser('john', 'johnpass', 'johndoe@email.com', 'John', 'Doe');
+app.post('/add_user', (req, res) => {
+    
+    try {
+        
+    } catch (error) {
+        
+    }
+});
 
-const getTodos = async (id: number) => {
-    const res = await client.todo.findMany({
-        where: {
-            userId: id
-        }
-    });
-    console.log(res);
-}
+app.get('/new_todo', (req, res) => {
 
-getTodos(2);
+});
+
+app.put('/edit_user', (req, res) => {
+
+});
+
+app.put('/edit_todo', (req, res) => {
+
+});
+
+app.put('/delete_user', (req, res) => {
+
+});
+
+app.put('/delete_todo', (req, res) => {
+
+});
+
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+});
