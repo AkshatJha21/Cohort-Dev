@@ -1,5 +1,5 @@
 import express from "express";
-import { allTodos, allUsers, createTodo, createUser, deleteTodo, deleteUser, todoComplete, todoUpdate, updateUser } from "./db";
+import { allTodos, allUsers, createTodo, createUser, deleteTodo, deleteUser, getUser, todoComplete, todoUpdate, updateUser } from "./db";
 
 const app = express();
 const port = 3000;
@@ -9,7 +9,7 @@ app.get('/users', async (req, res) => {
     try {
         const users = await allUsers();
         res.status(200).json({
-            list: users
+            users
         });
     } catch (error) {
         res.status(411).json({
@@ -49,7 +49,7 @@ app.post('/add_user', async (req, res) => {
     }
 });
 
-app.get('/new_todo', async (req, res) => {
+app.post('/add_todo', async (req, res) => {
     const { title, description, userId } = req.body;
     try {
         const newTodo = await createTodo(
@@ -120,7 +120,7 @@ app.put('/edit_todo', async (req, res) => {
     }
 });
 
-app.put('/delete_user', async (req, res) => {
+app.delete('/delete_user', async (req, res) => {
     const { id } = req.body;
     try {
         const user = await deleteUser(id);
@@ -134,7 +134,7 @@ app.put('/delete_user', async (req, res) => {
     }
 });
 
-app.put('/delete_todo', async (req, res) => {
+app.delete('/delete_todo', async (req, res) => {
     const { id } = req.body;
     try {
         const todo = await deleteTodo(id);
