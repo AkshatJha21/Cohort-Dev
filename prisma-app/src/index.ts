@@ -32,17 +32,15 @@ app.get('/todos', async (req, res) => {
 });
 
 app.post('/add_user', async (req, res) => {
-    const { username, email, password, firstName, lastName } = req.body;
+    const { email, name } = req.body;
     try {
         const newUser = await createUser(
-            username,
             email,
-            password,
-            firstName,
-            lastName,
+            name
         );
         res.status(200).json({
-            msg: "User added successfully"
+            msg: "User added successfully",
+            newUser
         });
     } catch (error) {
         res.status(411).json({
@@ -60,7 +58,8 @@ app.get('/new_todo', async (req, res) => {
             userId
         );
         res.status(200).json({
-            msg: "Todo added successfully"
+            msg: "Todo added successfully",
+            newTodo
         });
     } catch (error) {
         res.status(411).json({
@@ -70,15 +69,12 @@ app.get('/new_todo', async (req, res) => {
 });
 
 app.put('/edit_user', async (req, res) => {
-    const { id, username, email, password, firstName, lastName } = req.body;
+    const { id, email, name } = req.body;
     try {
         const update = await updateUser(
             id,
-            username,
             email,
-            password,
-            firstName,
-            lastName,
+            name
         );
         res.status(200).json({
             msg: "User updated successfully"
