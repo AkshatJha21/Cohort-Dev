@@ -86,7 +86,7 @@ app.put('/edit_user', async (req, res) => {
     }
 });
 
-app.post('/done', async (req, res) => {
+app.put('/done', async (req, res) => {
     const { id } = req.body;
     try {
         const complete = await todoComplete(
