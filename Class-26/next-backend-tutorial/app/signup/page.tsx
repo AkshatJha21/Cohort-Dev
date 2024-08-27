@@ -2,16 +2,18 @@
 
 import axios from "axios";
 import { ChangeEventHandler, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Signup() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
 
     const handleClick = () => {
         axios.post('http://localhost:3000/api/user', {
             username,
             password
-        });
+        }).then(() => router.push('/'));
     }
 
     return <div className="h-screen flex justify-center flex-col">

@@ -7,6 +7,10 @@ export async function POST(req: NextRequest) {
     console.log(body);
 
     return Response.json({
-        message: "You are looged in!"
+        message: "You are logged in!"
     })
+}
+
+export async function GET(req: NextRequest) {
+    
 }
